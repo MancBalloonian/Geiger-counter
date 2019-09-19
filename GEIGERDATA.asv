@@ -49,9 +49,9 @@ geigerStopPt = 1.8;
 figure(2);
 set(gcf, 'Position', [10 10 900 600])
 subplot(2, 2, 1);
-plot(time_gData(1:idx1), cpm(1:idx1), 'b--.'); hold;
+plot(time_gData(1:idx1), cpm(1:idx1, 'b--.'); hold;
 plot(time_gData(idx1:end), cpm(idx1:end), 'r--.'); hold;
-xlabel('Time (hrs)', 'Fontsize', 12); xlim([1.2, 2.8])
+xlabel('Time (hrs)', 'Fontsize', 12); xlim([1.2, 2.9])
 ylabel('CPM', 'Fontsize', 12)
 title('CPM vs Flight time')
 
@@ -62,26 +62,18 @@ plot(time_allData, altitude_new, 'bx'); hold;
 plot(time_allData(idx2:end), altitude_new(idx2:end), 'rx'); hold;
 xlabel('Time (hrs)', 'Fontsize', 12); xlim([1.2, 2.8])
 ylabel('Altitude (m)', 'Fontsize', 12)
-legend('Ascent', 'Descent')
+%legend('GC taking data', 'Data untaken')
 title('Altitude vs Flight time')
 
+%% test
 subplot(2, 2, 3);
-temp_new = temp(startPt:end);
-plot(time_allData, temp_new, 'bx'); hold;
-plot(time_allData(idx2:end), temp_new(idx2:end), 'rx'); hold;
-xlabel('Time (hrs)', 'Fontsize', 12);  xlim([1.2, 2.8])
-ylabel('Temperature (Cel)', 'Fontsize', 12)
-legend('Ascent', 'Descent')
-title('Temperature vs Flight time')
+plot(time_allData2(1:idx), temp(1:idx), 'bx'); hold;
+plot(time_allData2(idx+1:end), temp(idx+1:end), 'rx'); hold;
+xlabel('Time (hrs)', 'Fontsize', 12);  xlim([0.5, 4.5])
+ylabel('Altitude (m)', 'Fontsize', 12)
+legend('GC taking data', 'Data untaken')
+title('Altitude vs Flight time')
 
-subplot(2, 2, 4);
-speed_new = speed(startPt:end);
-plot(time_allData, speed_new, 'bx'); hold;
-plot(time_allData(idx2:end), speed_new(idx2:end), 'rx'); hold;
-xlabel('Time (hrs)', 'Fontsize', 12);  xlim([1.2, 2.8])
-ylabel('Speed (m/s)', 'Fontsize', 12)
-legend('Ascent', 'Descent')
-title('Speed vs Flight time')
 %% reads in all the other data
 
 figure(3);

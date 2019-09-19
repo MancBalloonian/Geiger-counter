@@ -1,0 +1,26 @@
+function [timeCal, idx] = outputDateTime(DAT, geigerTrue)
+    %{
+    Function calculates the time given the input Datetime formatted array
+    @param DAT :: date time array
+    @return timeCal :: calibrated relative time array
+    %}
+
+    [hh,mm,ss] = hms(DAT);
+
+    % converts the date-time into hours
+    time = hh+mm/60+ss/3600;
+    time(isnan(time))= 14.416;
+    
+    geigerStartTime = 11+38/60+24/3600; 
+
+    if geigerTrue == true
+        % for the GPS data
+        index = find(time > geigerStartTime);
+        idx = index(1);
+        timeCal = time(idx:end);        
+    else
+        % need real time or calibrated time
+        timeCal = time - time(1);
+        idx=0;
+    end    
+end
